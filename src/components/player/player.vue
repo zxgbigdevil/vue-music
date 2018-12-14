@@ -86,6 +86,7 @@
 </template>
 
 <script>
+// test
 import {mapGetters, mapMutations} from 'vuex'
 import animations from 'create-keyframe-animation'
 import {prefixStyle} from 'common/js/dom'
