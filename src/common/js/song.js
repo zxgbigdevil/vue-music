@@ -1,5 +1,10 @@
+import {getSongVkey} from 'api/singer'
+import {getLyric} from 'api/song'
+import {ERR_OK} from 'api/config'
+import {Base64} from 'js-base64'
+
 export default class Song {
-  constructor({id, mid, singer, name, album, duration, image, url}) {
+  constructor({id, mid, singer, name, album, duration, image}) {
     this.id = id
     this.mid = mid
     this.singer = singer
@@ -7,7 +12,34 @@ export default class Song {
     this.album = album
     this.duration = duration
     this.image = image
-    this.url = url
+  }
+  // 获取歌词vkey,并返回拼接好的歌曲文件路径
+  async songFilePath() {
+    if (this.FilePath) {
+      return Promise.resolve(this.FilePath)
+    }
+    // 获取歌曲文件的key，拼接成文件路径
+    let result = await getSongVkey(this.mid)
+    let songFile = result.data.items
+    this.FilePath = `http://isure.stream.qqmusic.qq.com/${songFile[0].filename}?guid=7504433754&vkey=${songFile[0].vkey}&fromtag=66`
+    return Promise.resolve(this.FilePath)
+  }
+  // 获取歌词数据
+  getLyric() {
+    if (this.lyric) {
+      return Promise.resolve(this.lyric)
+    }
+
+    return new Promise((resolve, reject) => {
+      getLyric(this.mid).then((res) => {
+        if (res.retcode === ERR_OK) {
+          this.lyric = Base64.decode(res.lyric)
+          resolve(this.lyric)
+        } else {
+          reject(new Error('no lyric'))
+        }
+      })
+    })
   }
 }
 

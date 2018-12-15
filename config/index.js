@@ -24,6 +24,19 @@ module.exports = {
         pathRewrite: {
           '^/api/getDiscList': ''
         }
+      },
+      // 用于获取歌词的代理
+      '/api/lyric': {
+        // target代替地址
+        target: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',// 目标接口域名
+        bypass(req, res) {
+          req.headers.referer = 'http://c.y.qq.com',
+          req.headers.host = 'c.y.qq.com'
+        },
+        changeOrigin: true,// 是否跨域
+        pathRewrite: {
+          '^/api/lyric': ''
+        }
       }
     },
 
