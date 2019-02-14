@@ -110,6 +110,12 @@ export default {
       let anchorIndex = this.touch.anchorIndex + delta
       this._scrollTo(anchorIndex)
     },
+<<<<<<< HEAD
+=======
+    refresh() {
+      this.$refs.listview.refresh()
+    },
+>>>>>>> recommend songList finish
     scroll(pos) {
       this.scrollY = pos.y
     },

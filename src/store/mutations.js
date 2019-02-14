@@ -21,6 +21,12 @@ const mutations = {
   },
   [types.SET_CURRENT_INDEX](state, index) {
     state.currentIndex = index
+<<<<<<< HEAD
+=======
+  },
+  [types.SET_DISC](state, disc) {
+    state.disc = disc
+>>>>>>> recommend songList finish
   }
 }
 

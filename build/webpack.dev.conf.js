@@ -9,6 +9,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+<<<<<<< HEAD
+=======
+// 用于代理的定义项---开始
+var express = require('express')
+var axios = require('axios')
+var app = express()
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)
+// 用于代理的定义项---结束
+>>>>>>> recommend songList finish
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,7 +52,60 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+<<<<<<< HEAD
     }
+=======
+    },
+    //用于代理获取数据的方法---开始
+    before(app) {
+      // 获取首页推荐列表数据
+      app.get('/api/getDiscList', (req, res) => {
+        var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg' // 服务端请求原api
+        axios.get(url, {        //通过axios发送http请求，同时更改referer和host，并且把参数拓展给服务端
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query    //浏览器请求该接口所带来的参数 
+        }).then((response) => {    //成功回调
+          res.json(response.data)    //response是QQ接口返回的，res是我们自己的。所以要把数据输出给浏览器前端
+        }).catch((e) => {    //如果接口有问题，catch（）
+          console.log(e)
+        })
+      })
+      // 获取推荐歌单数据
+      app.get('/api/getSongList', (req, res) => {
+        var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
+      // 获取歌词数据
+      app.get('/api/lyric', (req, res) => {
+        var url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
+    }
+    //用于代理获取数据的方法---结束
+>>>>>>> recommend songList finish
   },
   plugins: [
     new webpack.DefinePlugin({

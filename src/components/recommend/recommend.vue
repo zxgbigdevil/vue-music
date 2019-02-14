@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div class="recommend">
+=======
+  <div class="recommend" ref="recommend">
+>>>>>>> recommend songList finish
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
         <div v-if="recommends.length" class="slider-wrapper">
@@ -14,7 +18,11 @@
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
+<<<<<<< HEAD
             <li v-for="item in discList" class="item" :key="item.listennum">
+=======
+            <li @click="selectItem(item)" v-for="item in discList" class="item" :key="item.listennum">
+>>>>>>> recommend songList finish
               <div class="icon">
                 <img v-lazy="item.imgurl" width="60" height="60">
               </div>
@@ -30,6 +38,10 @@
         <loading></loading>
       </div>
     </scroll>
+<<<<<<< HEAD
+=======
+    <router-view></router-view>
+>>>>>>> recommend songList finish
   </div>
 </template>
 
@@ -39,8 +51,16 @@ import Scroll from 'base/scroll/scroll'
 import Slider from 'base/slider/slider'
 import {getRecommend, getDiscList} from 'api/recommend'
 import {ERR_OK} from 'api/config'
+<<<<<<< HEAD
 
 export default {
+=======
+import {playlistMixin} from 'common/js/mixin'
+import {mapMutations} from 'vuex'
+
+export default {
+  mixins: [playlistMixin],
+>>>>>>> recommend songList finish
   data() {
     return {
       recommends: [],
@@ -52,6 +72,20 @@ export default {
     this._getDiscList()
   },
   methods: {
+<<<<<<< HEAD
+=======
+    handlePlaylist(playlist) {
+      const bottom = playlist.length > 0 ? '60px' : ''
+      this.$refs.recommend.style.bottom = bottom
+      this.$refs.scroll.refresh()
+    },
+    selectItem(item) {
+      this.$router.push({
+        path: `/recommend/${item.dissid}`
+      })
+      this.setDisc(item)
+    },
+>>>>>>> recommend songList finish
     _getRecommend() {
       getRecommend().then((res) => {
         if (res.code === ERR_OK) {
@@ -71,7 +105,14 @@ export default {
         this.$refs.scroll.refresh()
         this.checkLoaded = true
       }
+<<<<<<< HEAD
     }
+=======
+    },
+    ...mapMutations({
+      setDisc: 'SET_DISC'
+    })
+>>>>>>> recommend songList finish
   },
   components: {
     Slider,
