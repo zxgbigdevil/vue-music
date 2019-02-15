@@ -239,10 +239,7 @@ export default {
     loop() {
       this.$refs.audio.currentTime = 0
       this.$refs.audio.play()
-<<<<<<< HEAD
-=======
       this.setPlayingState(true)
->>>>>>> recommend songList finish
       if (this.currentLyric) {
         this.currentLyric.seek(0)
       }
@@ -254,10 +251,7 @@ export default {
       }
       if (this.playlist.length === 1) {
         this.loop()
-<<<<<<< HEAD
-=======
         return
->>>>>>> recommend songList finish
       } else {
         let index = this.currentIndex + 1
         if (index === this.playlist.length) {
@@ -277,10 +271,7 @@ export default {
       }
       if (this.playlist.length === 1) {
         this.loop()
-<<<<<<< HEAD
-=======
         return
->>>>>>> recommend songList finish
       } else {
         let index = this.currentIndex - 1
         if (index === -1) {
@@ -339,12 +330,9 @@ export default {
     },
     getLyric() {
       this.currentSong.getLyric().then((lyric) => {
-<<<<<<< HEAD
-=======
         if (this.currentSong.lyric !== lyric) {
           return
         }
->>>>>>> recommend songList finish
         this.currentLyric = new Lyric(lyric, this.handleLyric)
         if (this.playing) {
           this.currentLyric.play()
@@ -361,11 +349,7 @@ export default {
         let lineEl = this.$refs.lyricLine[lineNum - 5]
         this.$refs.lyricList.scrollToElement(lineEl, 1000)
       } else {
-<<<<<<< HEAD
-        this.$refs.lyricList.scrollToElement(0, 0, 1000)
-=======
         this.$refs.lyricList.scrollTo(0, 0, 1000)
->>>>>>> recommend songList finish
       }
       this.playingLyric = txt
     },

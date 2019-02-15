@@ -35,8 +35,6 @@ export function getDiscList() {
   }).catch((err) => {
     console.log(err)
   })
-<<<<<<< HEAD
-=======
 }
 
 export function getSongList(disstid) {
@@ -62,5 +60,4 @@ export function getSongList(disstid) {
   }).catch((err) => {
     console.log(err)
   })
->>>>>>> recommend songList finish
 }

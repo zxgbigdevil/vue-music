@@ -38,11 +38,7 @@ module.exports = {
       'common': resolve('src/common'),
       'components': resolve('src/components'),
       'api': resolve('src/api'),
-<<<<<<< HEAD
-      'base': resolve('src/base')
-=======
       'base': resolve('src/base'),
->>>>>>> recommend songList finish
     }
   },
   module: {

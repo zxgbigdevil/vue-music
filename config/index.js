@@ -6,43 +6,12 @@ const path = require('path')
 
 module.exports = {
   dev: {
-<<<<<<< HEAD
-
-=======
->>>>>>> recommend songList finish
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       // 后端接口代理、用于跨域
       // 使用/api/getDiscList代替target
-<<<<<<< HEAD
-      '/api/getDiscList': {
-        // target代替地址
-        target: 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg',// 目标接口域名
-        bypass(req, res) {
-          req.headers.referer = 'http://c.y.qq.com',
-          req.headers.host = 'c.y.qq.com'
-        },
-        changeOrigin: true,// 是否跨域
-        pathRewrite: {
-          '^/api/getDiscList': ''
-        }
-      },
-      // 用于获取歌词的代理
-      '/api/lyric': {
-        // target代替地址
-        target: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',// 目标接口域名
-        bypass(req, res) {
-          req.headers.referer = 'http://c.y.qq.com',
-          req.headers.host = 'c.y.qq.com'
-        },
-        changeOrigin: true,// 是否跨域
-        pathRewrite: {
-          '^/api/lyric': ''
-        }
-      }
-=======
       // '/api/getDiscList': {
       //   // target代替地址
       //   target: 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg',// 目标接口域名
@@ -81,7 +50,6 @@ module.exports = {
       //     '^/api/lyric': ''
       //   }
       // }
->>>>>>> recommend songList finish
     },
 
     // Various Dev Server settings

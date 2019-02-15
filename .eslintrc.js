@@ -25,11 +25,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-<<<<<<< HEAD
-    // 文件末尾空行
-=======
     // 页面末尾不用空行
->>>>>>> recommend songList finish
     'eol-last': 0,
     // funtion括号左边不用空格
     'space-before-function-paren': 0

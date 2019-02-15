@@ -9,8 +9,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-<<<<<<< HEAD
-=======
 // 用于代理的定义项---开始
 var express = require('express')
 var axios = require('axios')
@@ -18,7 +16,6 @@ var app = express()
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 // 用于代理的定义项---结束
->>>>>>> recommend songList finish
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -52,9 +49,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
-<<<<<<< HEAD
-    }
-=======
     },
     //用于代理获取数据的方法---开始
     before(app) {
@@ -105,7 +99,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       })
     }
     //用于代理获取数据的方法---结束
->>>>>>> recommend songList finish
   },
   plugins: [
     new webpack.DefinePlugin({
