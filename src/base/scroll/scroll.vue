@@ -25,13 +25,17 @@ export default {
       type: Boolean,
       default: false
     },
-    pullup: {
+    pullup: {// 拉到底部触发事件
       type: Boolean,
       default: false
     },
-    beforeScroll: {
+    beforeScroll: {// 开始拖动组件触发事件
       type: Boolean,
       default: false
+    },
+    refreshDelay: {
+      type: Number,
+      default: 20
     }
   },
   mounted() {
@@ -91,7 +95,7 @@ export default {
     data() {
       setTimeout(() => {
         this.refresh()
-      }, 20)
+      }, this.refreshDelay)
     }
   }
 }
