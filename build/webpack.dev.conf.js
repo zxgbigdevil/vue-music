@@ -9,13 +9,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-// 用于代理的定义项---开始
+// --------用于代理后端接口的定义项---开始
 var express = require('express')
 var axios = require('axios')
 var app = express()
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
-// 用于代理的定义项---结束
+// --------用于代理后端接口的定义项---结束
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -50,7 +50,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     watchOptions: {
       poll: config.dev.poll,
     },
-    //用于代理获取数据的方法---开始
+    // --------用于代理获取数据的方法---开始
     before(app) {
       // 获取首页推荐列表数据
       app.get('/api/getDiscList', (req, res) => {
@@ -97,8 +97,23 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           console.log(e)
         })
       })
+      // 搜索列表接口
+      app.get('/api/search', (req, res) => {
+        var url = 'https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
     }
-    //用于代理获取数据的方法---结束
+    // --------用于代理获取数据的方法---结束
   },
   plugins: [
     new webpack.DefinePlugin({
