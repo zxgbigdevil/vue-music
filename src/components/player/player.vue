@@ -102,7 +102,7 @@
     <audio
       ref="audio"
       :src="songFilePath"
-      @canplay="ready"
+      @play="ready"
       @error="error"
       @timeupdate="updateTime"
       @ended="end"
@@ -429,10 +429,14 @@ export default {
       }
       if (this.currentLyric) {
         this.currentLyric.stop()
+        this.currentTime = 0
+        this.playingLyric = ''
+        this.currrentLineNum = 0
       }
       // 获取歌曲路径需要添加vkey
       this.songFilePath = await this.currentSong.songFilePath()
-      setTimeout(() => {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
         this.$refs.audio.play()
         this.getLyric()
       }, 1000)
